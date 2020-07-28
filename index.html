@@ -1,0 +1,100 @@
+<!-- Practicing VueJS  -->
+
+<!-- Border Radius Generator -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>VueJS</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body bgcolor="white" style="padding: 90px">
+	<div id="a"></div>
+<div id="app">
+	<div class="row">
+		<div id="mydiv" class="mb-5 mr-lg-5" v-bind:style="{ height : h+'px' , width : w+'px' , borderRadius : `${br1}px ${br2}px ${br3}px ${br4}px` , background : '#00d1cd' ,boxShadow : `${bsx}px ${bsy}px ${blur}px black`}"></div>
+		<div class="ml-5">
+			<center><h4 class="mb-3">Border Radius Generator</h4></center>
+		<table width="500" class="mb-5">
+			<tr>
+				<td><label>Top-Left : </label></td>
+				<td><input type="range" class="custom-range"  id="slider" v-model="br1" min="0" max="500"></td>
+			</tr>
+			<tr>
+				<td><label>Top-Right : </label></td>
+				<td><input type="range" class="custom-range"  id="slider" v-model="br2" min="0" max="500"></td>
+			</tr>
+			<tr>
+				<td><label>Bottom-Right : </label></td>
+				<td><input type="range" class="custom-range"  id="slider" v-model="br3" min="0" max="500"></td>
+			</tr>
+			<tr>
+				<td><label>Bottom-Left : </label></td>
+				<td><input type="range" class="custom-range"  id="slider" v-model="br4" min="0" max="500"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><button class="btn btn-primary btn-block" @click="getcode">Get Code</button></td>
+			</tr>
+			<tr>
+				<td colspan="3"><input type="text" id="code" class="form-control"></td>
+			</tr>
+		</table>
+		<center><h4>Box Shadow Generator</h4></center>	
+		<table width="500">
+			<tr>
+				<td><label>X-Axis : </label></td>
+				<td><input type="range" class="custom-range" id="slider" value="0" min="-100" max="100" v-model='bsx'></td>
+			</tr>
+			<tr>
+				<td><label>Y-Axis : </label></td>
+				<td><input type="range" class="custom-range" id="slider" value="0" min="-100" max="100" v-model='bsy'></td>
+			</tr>
+			<tr>
+				<td><label>Blur : </label></td>
+				<td><input type="range" class="custom-range" id="slider" value="10" min="0" max="100" v-model='blur'></td>
+			</tr>
+			<tr>
+				<td colspan="2"><button class="btn btn-primary btn-block" @click="getcodeshadow">Get Code</button></td>
+			</tr>
+			<tr>
+				<td colspan="3"><input type="text" id="code2" class="form-control"></td>
+			</tr>
+		</table>
+		</div>
+	</div>
+</div>
+
+<script>
+
+Vue.options.delimiters = ['[[',']]']
+
+const app = new Vue({
+	el : "#app",
+	data : {
+		h : 500,
+		w : 500,
+		br1 : 0,
+		br2 : 0,
+		br3 : 0,
+		br4 : 0,
+		bsx : 0,
+		bsy : 0,
+		blur : 10
+	},
+	methods : {
+		getcode : function(){
+			var code = `border-radius : ${this.br1}px ${this.br2}px ${this.br3}px ${this.br4}px`;
+			document.getElementById("code").value = code+' ;'
+		},
+		getcodeshadow : function(){
+			var code2 = `box-shadow : ${this.bsx}px ${this.bsy}px ${this.blur}px black`;
+			document.getElementById("code2").value = code2+' ;'
+		}
+	}
+});
+
+</script>
+</body>
+</html>
